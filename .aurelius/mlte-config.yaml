@@ -1,0 +1,80 @@
+# MLTE Configuration for Microsoft Agent Framework
+# This configuration file defines settings for MLTE integration
+#
+# Federal Compliance: CMMC L2, NIST 800-171, NIST AI RMF
+# Organization: Aurelius Tech & Talent Solutions
+# Last Updated: 2025-10-13
+
+mlte:
+  # MLTE Store Configuration
+  store:
+    uri: "fs://./mlte-store"  # Filesystem store for development
+    type: filesystem
+    connection_pool_size: 10
+
+  # Evaluation Settings
+  evaluation_enabled: true
+  evaluation_mode: synchronous  # Options: synchronous, asynchronous, ci_only
+  fail_on_error: false  # Set to true to fail builds on evaluation errors
+
+  # Quality Gate Thresholds
+  quality_gates:
+    accuracy_min: 0.95  # Minimum accuracy (0.0-1.0)
+    security_min: 0.90  # Minimum security score (0.0-1.0)
+    latency_max_ms: 2000  # Maximum latency in milliseconds
+    memory_max_mb: 512  # Maximum memory usage in MB
+
+  # Orchestrator Configuration
+  orchestrator:
+    parallel_execution: true
+    max_workers: 4  # Number of parallel evaluation workers
+    timeout_seconds: 300  # Evaluation timeout (5 minutes)
+
+  # Agent LLM Configurations
+  agents:
+    negotiation:
+      llm_model: "gpt-4"
+      temperature: 0.3
+      max_tokens: 4096
+      timeout_seconds: 60
+
+    testing:
+      llm_model: "gpt-4"
+      temperature: 0.0
+      max_tokens: 4096
+      timeout_seconds: 60
+
+    validation:
+      llm_model: "gpt-4"
+      temperature: 0.0
+      max_tokens: 4096
+      timeout_seconds: 60
+
+    reporting:
+      llm_model: "gpt-4"
+      temperature: 0.5
+      max_tokens: 8192
+      timeout_seconds: 90
+
+    compliance:
+      llm_model: "gpt-4"
+      temperature: 0.0
+      max_tokens: 8192
+      timeout_seconds: 90
+
+  # Federal Compliance Configuration
+  federal_compliance:
+    enabled: true
+    standards:
+      - "NIST AI RMF"
+      - "CMMC L2"
+      - "NIST 800-171"
+    oscal_export: true
+    audit_trail: true
+    classification: "CUI"  # Options: CUI, Public, Confidential
+
+# Notes:
+# - For production, change store URI to PostgreSQL: postgresql://user:pass@host:5432/mlte
+# - For CI/CD, set evaluation_mode to "ci_only"
+# - For federal projects, ensure federal_compliance.enabled is true
+# - All LLM models default to GPT-4; change to Azure OpenAI models as needed

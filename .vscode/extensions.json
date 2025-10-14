@@ -1,0 +1,117 @@
+{
+  "recommendations": [
+    // ========================================================================
+    // CORE EXTENSIONS (Required)
+    // ========================================================================
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "charliermarsh.ruff",
+    "ms-dotnettools.csharp",
+    "ms-dotnettools.csdevkit",
+
+    // ========================================================================
+    // PYTHON DEVELOPMENT
+    // ========================================================================
+    "ms-python.mypy-type-checker",
+    "ms-python.debugpy",
+    "littlefoxteam.vscode-python-test-adapter",
+
+    // ========================================================================
+    // .NET DEVELOPMENT
+    // ========================================================================
+    "ms-dotnettools.vscode-dotnet-runtime",
+    "kreativ-software.csharpextensions",
+
+    // ========================================================================
+    // GIT & VERSION CONTROL
+    // ========================================================================
+    "eamodio.gitlens",
+    "github.vscode-pull-request-github",
+    "mhutchie.git-graph",
+
+    // ========================================================================
+    // AI ASSISTANTS
+    // ========================================================================
+    "github.copilot",
+    "github.copilot-chat",
+
+    // ========================================================================
+    // CODE QUALITY & LINTING
+    // ========================================================================
+    "editorconfig.editorconfig",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "usernamehw.errorlens",
+    "streetsidesoftware.code-spell-checker",
+
+    // ========================================================================
+    // SECURITY & COMPLIANCE
+    // ========================================================================
+    "snyk-security.snyk-vulnerability-scanner",
+    "trunk.io",
+    "timonwong.shellcheck",
+
+    // ========================================================================
+    // DOCUMENTATION
+    // ========================================================================
+    "yzhang.markdown-all-in-one",
+    "davidanson.vscode-markdownlint",
+    "shd101wyy.markdown-preview-enhanced",
+
+    // ========================================================================
+    // FILE FORMATS
+    // ========================================================================
+    "redhat.vscode-yaml",
+    "tamasfe.even-better-toml",
+    "mechatroner.rainbow-csv",
+
+    // ========================================================================
+    // PRODUCTIVITY
+    // ========================================================================
+    "gruntfuggly.todo-tree",
+    "wayou.vscode-todo-highlight",
+    "aaron-bond.better-comments",
+    "alefragnani.bookmarks",
+
+    // ========================================================================
+    // DOCKER & CONTAINERS
+    // ========================================================================
+    "ms-azuretools.vscode-docker",
+    "ms-vscode-remote.remote-containers",
+
+    // ========================================================================
+    // AZURE INTEGRATION
+    // ========================================================================
+    "ms-vscode.azure-account",
+    "ms-azuretools.vscode-azurefunctions",
+    "ms-azuretools.vscode-azureresourcegroups",
+    "ms-azuretools.vscode-azurestorage",
+
+    // ========================================================================
+    // TESTING
+    // ========================================================================
+    "ms-vscode.test-adapter-converter",
+    "hbenl.vscode-test-explorer",
+
+    // ========================================================================
+    // REST API TESTING
+    // ========================================================================
+    "humao.rest-client",
+
+    // ========================================================================
+    // THEME & APPEARANCE (Optional)
+    // ========================================================================
+    "pkief.material-icon-theme",
+    "github.github-vscode-theme"
+  ],
+
+  "unwantedRecommendations": [
+    // Extensions that may conflict with Ruff
+    "ms-python.flake8",
+    "ms-python.isort",
+    "ms-python.black-formatter",
+
+    // Extensions that may conflict with C# DevKit
+    "ms-dotnettools.vscode-dotnet-pack"
+  ]
+}

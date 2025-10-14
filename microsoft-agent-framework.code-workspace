@@ -1,0 +1,644 @@
+{
+  "folders": [
+    {
+      "name": "🏠 Root - Agent Framework",
+      "path": "."
+    },
+    {
+      "name": "🐍 Python - Core Framework",
+      "path": "python"
+    },
+    {
+      "name": "📦 Python - Packages",
+      "path": "python/packages"
+    },
+    {
+      "name": "🧪 Python - Samples",
+      "path": "python/samples"
+    },
+    {
+      "name": "🔷 .NET - Framework",
+      "path": "dotnet"
+    },
+    {
+      "name": "🔷 .NET - Samples",
+      "path": "dotnet/samples"
+    },
+    {
+      "name": "🔒 Aurelius - Compliance & Security",
+      "path": ".aurelius"
+    },
+    {
+      "name": "📚 Documentation",
+      "path": "docs"
+    },
+    {
+      "name": "🚀 Workflows",
+      "path": "workflow-samples"
+    }
+  ],
+  "settings": {
+    // ========================================================================
+    // GENERAL EDITOR SETTINGS
+    // ========================================================================
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit",
+      "source.fixAll": "explicit"
+    },
+    "editor.rulers": [120],
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.trimAutoWhitespace": true,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.encoding": "utf8",
+    "files.eol": "\\n",
+
+    // ========================================================================
+    // PYTHON SETTINGS
+    // ========================================================================
+    "[python]": {
+      "editor.tabSize": 4,
+      "editor.defaultFormatter": "charliermarsh.ruff",
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "source.organizeImports.ruff": "always",
+        "source.fixAll.ruff": "always"
+      }
+    },
+
+    // Python Extension Configuration
+    "python.defaultInterpreterPath": "${workspaceFolder}/python/.venv/bin/python",
+    "python.terminal.activateEnvironment": true,
+    "python.analysis.typeCheckingMode": "strict",
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.autoFormatStrings": true,
+    "python.analysis.importFormat": "relative",
+    "python.analysis.inlayHints.functionReturnTypes": true,
+    "python.analysis.inlayHints.variableTypes": true,
+    "python.analysis.diagnosticMode": "workspace",
+    "python.analysis.exclude": [
+      "**/node_modules",
+      "**/.venv",
+      "**/venv",
+      "**/__pycache__",
+      "**/samples/semantic-kernel-migration"
+    ],
+    "python.analysis.packageIndexDepths": [
+      { "name": "agent_framework", "depth": 3 },
+      { "name": "agent_framework_a2a", "depth": 2 },
+      { "name": "agent_framework_azure_ai", "depth": 2 },
+      { "name": "agent_framework_copilotstudio", "depth": 2 },
+      { "name": "agent_framework_mem0", "depth": 2 },
+      { "name": "agent_framework_redis", "depth": 2 },
+      { "name": "agent_framework_devui", "depth": 2 },
+      { "name": "openai", "depth": 2 },
+      { "name": "azure", "depth": 2 },
+      { "name": "pydantic", "depth": 2 }
+    ],
+
+    // Python Testing
+    "python.testing.pytestEnabled": true,
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestArgs": [
+      "--cov",
+      "--cov-report=html",
+      "--cov-report=term",
+      "-v"
+    ],
+
+    // ========================================================================
+    // C# / .NET SETTINGS
+    // ========================================================================
+    "[csharp]": {
+      "editor.tabSize": 4,
+      "editor.defaultFormatter": "ms-dotnettools.csharp",
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit",
+        "source.fixAll": "explicit"
+      }
+    },
+
+    // .NET Configuration
+    "dotnet.defaultSolution": "dotnet/agent-framework-dotnet.slnx",
+    "dotnet.server.useOmnisharp": false,
+    "omnisharp.enableEditorConfigSupport": true,
+    "omnisharp.enableRoslynAnalyzers": true,
+    "omnisharp.useModernNet": true,
+
+    // ========================================================================
+    // LANGUAGE-SPECIFIC FORMATTERS
+    // ========================================================================
+    "[json]": {
+      "editor.tabSize": 2,
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[jsonc]": {
+      "editor.tabSize": 2,
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[yaml]": {
+      "editor.tabSize": 2,
+      "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "[markdown]": {
+      "editor.tabSize": 2,
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "files.trimTrailingWhitespace": false
+    },
+
+    // ========================================================================
+    // GIT SETTINGS
+    // ========================================================================
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "git.enableSmartCommit": true,
+    "git.openRepositoryInParentFolders": "always",
+    "git.detectSubmodules": true,
+
+    // ========================================================================
+    // SEARCH & FILES
+    // ========================================================================
+    "search.exclude": {
+      "**/.git": true,
+      "**/.venv": true,
+      "**/venv": true,
+      "**/__pycache__": true,
+      "**/*.pyc": true,
+      "**/node_modules": true,
+      "**/dist": true,
+      "**/build": true,
+      "**/.pytest_cache": true,
+      "**/.mypy_cache": true,
+      "**/.ruff_cache": true,
+      "**/htmlcov": true,
+      "**/artifacts": true,
+      "**/.aurelius/evidence": true
+    },
+    "files.exclude": {
+      "**/.git": false,
+      "**/__pycache__": true,
+      "**/*.pyc": true,
+      "**/.pytest_cache": true,
+      "**/.mypy_cache": true,
+      "**/.ruff_cache": true
+    },
+    "files.watcherExclude": {
+      "**/.git/objects/**": true,
+      "**/.venv/**": true,
+      "**/venv/**": true,
+      "**/node_modules/**": true,
+      "**/dist/**": true,
+      "**/build/**": true,
+      "**/artifacts/**": true
+    },
+
+    // ========================================================================
+    // RUFF (Python Linter)
+    // ========================================================================
+    "ruff.enable": true,
+    "ruff.lint.enable": true,
+    "ruff.format.args": ["--line-length=120"],
+    "ruff.lint.args": ["--fix"],
+    "ruff.organizeImports": true,
+    "ruff.fixAll": true,
+    "ruff.configuration": "${workspaceFolder}/python/pyproject.toml",
+
+    // ========================================================================
+    // PYLANCE / PYRIGHT
+    // ========================================================================
+    "pylance.inlayHints.functionReturnTypes": true,
+    "pylance.inlayHints.variableTypes": true,
+
+    // ========================================================================
+    // MYPY
+    // ========================================================================
+    "mypy-type-checker.args": [
+      "--config-file=${workspaceFolder}/python/pyproject.toml",
+      "--strict"
+    ],
+
+    // ========================================================================
+    // SECURITY & COMPLIANCE
+    // ========================================================================
+    "files.associations": {
+      "*.yaml": "yaml",
+      "*.yml": "yaml",
+      ".env.example": "dotenv",
+      "*.toml": "toml"
+    },
+
+    // ========================================================================
+    // TERMINAL
+    // ========================================================================
+    "terminal.integrated.defaultProfile.windows": "Git Bash",
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "terminal.integrated.defaultProfile.osx": "zsh",
+    "terminal.integrated.env.windows": {
+      "PYTHONPATH": "${workspaceFolder}/python"
+    },
+    "terminal.integrated.env.linux": {
+      "PYTHONPATH": "${workspaceFolder}/python"
+    },
+    "terminal.integrated.env.osx": {
+      "PYTHONPATH": "${workspaceFolder}/python"
+    },
+
+    // ========================================================================
+    // SPELL CHECKING
+    // ========================================================================
+    "cSpell.enabled": true,
+    "cSpell.languageSettings": [
+      {
+        "languageId": "python",
+        "allowCompoundWords": true,
+        "locale": "en-US"
+      },
+      {
+        "languageId": "csharp",
+        "allowCompoundWords": true,
+        "locale": "en-US"
+      }
+    ],
+    "cSpell.words": [
+      "Aurelius",
+      "CMMC",
+      "NIST",
+      "SDVOSB",
+      "FedRAMP",
+      "pyproject",
+      "dotnettools",
+      "pyright",
+      "mypy",
+      "ruff",
+      "pytest",
+      "asyncio",
+      "pydantic",
+      "openai",
+      "agentic",
+      "devui",
+      "copilotstudio",
+      "msft"
+    ],
+
+    // ========================================================================
+    // TASK RUNNER
+    // ========================================================================
+    "task.autoDetect": "on",
+    "task.quickOpen.detail": true,
+    "task.quickOpen.showAll": true,
+
+    // ========================================================================
+    // EXTENSION-SPECIFIC
+    // ========================================================================
+    "yaml.schemas": {
+      "https://json.schemastore.org/github-workflow.json": ".github/workflows/*.{yml,yaml}",
+      "https://json.schemastore.org/pre-commit-config.json": ".pre-commit-config.yaml"
+    },
+
+    // Error Lens (inline error display)
+    "errorLens.enabledDiagnosticLevels": [
+      "error",
+      "warning"
+    ],
+
+    // GitLens
+    "gitlens.codeLens.enabled": true,
+    "gitlens.currentLine.enabled": true,
+
+    // TODO Tree
+    "todo-tree.general.tags": [
+      "TODO",
+      "FIXME",
+      "HACK",
+      "SECURITY",
+      "COMPLIANCE",
+      "CMMC",
+      "NIST"
+    ],
+    "todo-tree.highlights.defaultHighlight": {
+      "icon": "alert",
+      "type": "text",
+      "foreground": "#000000",
+      "background": "#ffff00",
+      "opacity": 50,
+      "iconColour": "#ffff00"
+    },
+    "todo-tree.highlights.customHighlight": {
+      "SECURITY": {
+        "icon": "shield",
+        "foreground": "#ffffff",
+        "background": "#ff0000",
+        "iconColour": "#ff0000"
+      },
+      "COMPLIANCE": {
+        "icon": "check",
+        "foreground": "#000000",
+        "background": "#00ff00",
+        "iconColour": "#00ff00"
+      },
+      "CMMC": {
+        "icon": "shield",
+        "foreground": "#ffffff",
+        "background": "#0000ff",
+        "iconColour": "#0000ff"
+      }
+    }
+  },
+
+  // ==========================================================================
+  // RECOMMENDED EXTENSIONS
+  // ==========================================================================
+  "extensions": {
+    "recommendations": [
+      // Python
+      "ms-python.python",
+      "ms-python.vscode-pylance",
+      "charliermarsh.ruff",
+      "ms-python.mypy-type-checker",
+
+      // .NET / C#
+      "ms-dotnettools.csharp",
+      "ms-dotnettools.csdevkit",
+      "ms-dotnettools.vscode-dotnet-runtime",
+
+      // Git & Version Control
+      "eamodio.gitlens",
+      "github.vscode-pull-request-github",
+      "github.copilot",
+      "github.copilot-chat",
+
+      // General Development
+      "editorconfig.editorconfig",
+      "esbenp.prettier-vscode",
+      "dbaeumer.vscode-eslint",
+      "usernamehw.errorlens",
+
+      // Testing
+      "littlefoxteam.vscode-python-test-adapter",
+      "ms-vscode.test-adapter-converter",
+
+      // Markdown & Documentation
+      "yzhang.markdown-all-in-one",
+      "davidanson.vscode-markdownlint",
+
+      // YAML & Config Files
+      "redhat.vscode-yaml",
+      "tamasfe.even-better-toml",
+
+      // Security & Compliance
+      "snyk-security.snyk-vulnerability-scanner",
+      "trunk.io",
+
+      // Productivity
+      "gruntfuggly.todo-tree",
+      "streetsidesoftware.code-spell-checker",
+      "wayou.vscode-todo-highlight",
+
+      // Docker & Containers
+      "ms-azuretools.vscode-docker",
+      "ms-vscode-remote.remote-containers",
+
+      // Azure
+      "ms-vscode.azure-account",
+      "ms-azuretools.vscode-azurefunctions",
+      "ms-azuretools.vscode-azureresourcegroups"
+    ]
+  },
+
+  // ==========================================================================
+  // TASKS
+  // ==========================================================================
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Python: Install Dependencies",
+        "type": "shell",
+        "command": "cd python && uv pip install -e .[all]",
+        "group": "build",
+        "presentation": {
+          "reveal": "always",
+          "panel": "new"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Python: Run Tests",
+        "type": "shell",
+        "command": "cd python && pytest --cov --cov-report=html",
+        "group": "test",
+        "presentation": {
+          "reveal": "always",
+          "panel": "new"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Python: Lint (Ruff)",
+        "type": "shell",
+        "command": "cd python && ruff check .",
+        "group": "test",
+        "presentation": {
+          "reveal": "always",
+          "panel": "new"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Python: Format (Ruff + Black)",
+        "type": "shell",
+        "command": "cd python && ruff check --fix . && black . && isort .",
+        "group": "build",
+        "presentation": {
+          "reveal": "always",
+          "panel": "new"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Python: Type Check (MyPy)",
+        "type": "shell",
+        "command": "cd python && mypy .",
+        "group": "test",
+        "presentation": {
+          "reveal": "always",
+          "panel": "new"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Python: Security Scan (Bandit)",
+        "type": "shell",
+        "command": "bandit -r . -f json -o .aurelius/evidence/security/bandit-latest.json && bandit -r . -f txt",
+        "group": "test",
+        "presentation": {
+          "reveal": "always",
+          "panel": "new"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": ".NET: Build Solution",
+        "type": "shell",
+        "command": "dotnet build dotnet/agent-framework-dotnet.slnx",
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "presentation": {
+          "reveal": "always",
+          "panel": "new"
+        },
+        "problemMatcher": "$msCompile"
+      },
+      {
+        "label": ".NET: Run Tests",
+        "type": "shell",
+        "command": "dotnet test dotnet/agent-framework-dotnet.slnx",
+        "group": {
+          "kind": "test",
+          "isDefault": true
+        },
+        "presentation": {
+          "reveal": "always",
+          "panel": "new"
+        },
+        "problemMatcher": "$msCompile"
+      },
+      {
+        "label": "Compliance: Generate SBOM",
+        "type": "shell",
+        "command": "cyclonedx-py -o .aurelius/evidence/sbom/sbom-$(date +%Y%m%d).json",
+        "group": "build",
+        "presentation": {
+          "reveal": "always",
+          "panel": "new"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Compliance: Generate License Report",
+        "type": "shell",
+        "command": "pip-licenses --format=json --output-file=.aurelius/evidence/compliance/licenses-$(date +%Y%m%d).json",
+        "group": "build",
+        "presentation": {
+          "reveal": "always",
+          "panel": "new"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Security: Run All Scans",
+        "type": "shell",
+        "command": "bandit -r . && semgrep --config=auto . && safety check && pip-audit",
+        "group": "test",
+        "presentation": {
+          "reveal": "always",
+          "panel": "new"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Pre-commit: Run All Hooks",
+        "type": "shell",
+        "command": "pre-commit run --all-files",
+        "group": "test",
+        "presentation": {
+          "reveal": "always",
+          "panel": "new"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Azure: Login",
+        "type": "shell",
+        "command": "az login --tenant 944b3898-fcbe-4631-91e1-794e102c9c7d",
+        "group": "none",
+        "presentation": {
+          "reveal": "always",
+          "panel": "new"
+        },
+        "problemMatcher": []
+      }
+    ]
+  },
+
+  // ==========================================================================
+  // LAUNCH CONFIGURATIONS
+  // ==========================================================================
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Python: Current File",
+        "type": "debugpy",
+        "request": "launch",
+        "program": "${file}",
+        "console": "integratedTerminal",
+        "justMyCode": false,
+        "env": {
+          "PYTHONPATH": "${workspaceFolder}/python"
+        }
+      },
+      {
+        "name": "Python: Agent Sample",
+        "type": "debugpy",
+        "request": "launch",
+        "program": "${workspaceFolder}/python/samples/getting_started/agents/${input:pythonAgentSample}",
+        "console": "integratedTerminal",
+        "justMyCode": false,
+        "env": {
+          "PYTHONPATH": "${workspaceFolder}/python"
+        }
+      },
+      {
+        "name": "Python: Pytest Current File",
+        "type": "debugpy",
+        "request": "launch",
+        "module": "pytest",
+        "args": [
+          "${file}",
+          "-v",
+          "-s"
+        ],
+        "console": "integratedTerminal",
+        "justMyCode": false,
+        "env": {
+          "PYTHONPATH": "${workspaceFolder}/python"
+        }
+      },
+      {
+        "name": ".NET: Launch Current Project",
+        "type": "coreclr",
+        "request": "launch",
+        "preLaunchTask": ".NET: Build Solution",
+        "program": "${workspaceFolder}/dotnet/artifacts/bin/${input:dotnetProject}/Debug/net8.0/${input:dotnetProject}.dll",
+        "args": [],
+        "cwd": "${workspaceFolder}/dotnet",
+        "console": "internalConsole",
+        "stopAtEntry": false
+      },
+      {
+        "name": ".NET: Attach to Process",
+        "type": "coreclr",
+        "request": "attach"
+      }
+    ],
+    "inputs": [
+      {
+        "id": "pythonAgentSample",
+        "type": "promptString",
+        "description": "Python agent sample filename (e.g., simple_agent.py)"
+      },
+      {
+        "id": "dotnetProject",
+        "type": "promptString",
+        "description": ".NET project name"
+      }
+    ]
+  }
+}

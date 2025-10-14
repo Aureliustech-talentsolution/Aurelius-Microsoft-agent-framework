@@ -1,0 +1,121 @@
+# MLTE Configuration Template for Microsoft Agent Framework
+# Copy this file to mlte-config.yaml and customize for your environment
+#
+# Federal Compliance: CMMC L2, NIST 800-171, NIST AI RMF
+# Organization: Aurelius Tech & Talent Solutions
+
+mlte:
+  # MLTE Store Configuration
+  # Options:
+  #   - Development: fs://./mlte-store (filesystem)
+  #   - Production: postgresql://user:pass@host:5432/mlte
+  #   - Testing: memory:// (in-memory, not persistent)
+  #   - Remote: http://mlte-backend:8080
+  store:
+    uri: "fs://./mlte-store"
+    type: filesystem  # Options: filesystem, postgresql, memory, http
+    connection_pool_size: 10  # For PostgreSQL only
+
+  # Evaluation Settings
+  evaluation_enabled: true
+  evaluation_mode: synchronous  # Options: synchronous, asynchronous, ci_only
+  fail_on_error: false  # Set to true to fail CI builds on evaluation errors
+
+  # Quality Gate Thresholds
+  # Adjust these based on your requirements
+  quality_gates:
+    accuracy_min: 0.95  # Minimum accuracy (0.0-1.0)
+    security_min: 0.90  # Minimum security score (0.0-1.0)
+    latency_max_ms: 2000  # Maximum latency in milliseconds
+    memory_max_mb: 512  # Maximum memory usage in MB
+
+  # Orchestrator Configuration
+  orchestrator:
+    parallel_execution: true
+    max_workers: 4  # Number of parallel evaluation workers
+    timeout_seconds: 300  # Evaluation timeout (5 minutes)
+
+  # Agent LLM Configurations
+  # Configure different models/settings for each specialized agent
+  agents:
+    # NegotiationAgent - Generates QAS from agent specs
+    negotiation:
+      llm_model: "gpt-4"  # Or: azure/gpt-4-deployment-name
+      temperature: 0.3  # Moderate creativity for QAS generation
+      max_tokens: 4096
+      timeout_seconds: 60
+
+    # TestingAgent - Builds and executes test suites
+    testing:
+      llm_model: "gpt-4"
+      temperature: 0.0  # Deterministic test generation
+      max_tokens: 4096
+      timeout_seconds: 60
+
+    # ValidationAgent - Validates evidence and results
+    validation:
+      llm_model: "gpt-4"
+      temperature: 0.0  # Deterministic validation
+      max_tokens: 4096
+      timeout_seconds: 60
+
+    # ReportingAgent - Creates comprehensive reports
+    reporting:
+      llm_model: "gpt-4"
+      temperature: 0.5  # More natural language for reports
+      max_tokens: 8192  # Longer for detailed reports
+      timeout_seconds: 90
+
+    # FederalComplianceAgent - NIST AI RMF / CMMC mapping
+    compliance:
+      llm_model: "gpt-4"
+      temperature: 0.0  # Deterministic compliance mapping
+      max_tokens: 8192
+      timeout_seconds: 90
+
+  # Federal Compliance Configuration
+  federal_compliance:
+    enabled: true  # Set to false to disable compliance agent
+    standards:
+      - "NIST AI RMF"  # NIST AI Risk Management Framework
+      - "CMMC L2"  # Cybersecurity Maturity Model Certification Level 2
+      - "NIST 800-171"  # Protecting Controlled Unclassified Information
+    oscal_export: true  # Export compliance data in OSCAL format
+    audit_trail: true  # Generate complete audit trail
+    classification: "CUI"  # Options: CUI, Public, Confidential
+
+# Configuration Notes:
+#
+# Development Environment:
+#   - Use filesystem store: fs://./mlte-store
+#   - Keep evaluation_mode: synchronous
+#   - Set fail_on_error: false
+#
+# CI/CD Environment:
+#   - Use PostgreSQL store: postgresql://...
+#   - Set evaluation_mode: ci_only
+#   - Set fail_on_error: true
+#   - Ensure federal_compliance.audit_trail: true
+#
+# Production Environment:
+#   - Use PostgreSQL store with connection pooling
+#   - Set evaluation_mode: asynchronous
+#   - Increase max_workers based on load
+#   - Enable all federal compliance features
+#
+# Federal Compliance:
+#   - For federal projects, always set federal_compliance.enabled: true
+#   - Ensure audit_trail is enabled for CMMC compliance
+#   - Use CUI classification for controlled unclassified information
+#   - OSCAL export required for automated compliance documentation
+#
+# LLM Model Configuration:
+#   - For Azure OpenAI, use: azure/<deployment-name>
+#   - For local models, use: local/<model-path>
+#   - For OpenAI API, use: <model-name>
+#
+# Quality Gate Customization:
+#   - accuracy_min: Adjust based on agent criticality
+#   - security_min: 0.90 minimum for CMMC L2
+#   - latency_max_ms: Based on user experience requirements
+#   - memory_max_mb: Based on deployment environment

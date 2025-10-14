@@ -1,0 +1,570 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    // ========================================================================
+    // PYTHON TASKS
+    // ========================================================================
+    {
+      "label": "Python: Setup Environment",
+      "type": "shell",
+      "command": "cd python && python -m venv .venv && source .venv/bin/activate && pip install uv && uv pip install -e .[all]",
+      "windows": {
+        "command": "cd python && python -m venv .venv && .\\.venv\\Scripts\\activate && pip install uv && uv pip install -e .[all]"
+      },
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "echo": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Python: Install Dependencies",
+      "type": "shell",
+      "command": "cd python && uv pip install -e .[all]",
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Python: Run Tests",
+      "type": "shell",
+      "command": "cd python && pytest --cov --cov-report=html --cov-report=term -v",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Python: Run Tests (Coverage ≥85%)",
+      "type": "shell",
+      "command": "cd python && pytest --cov --cov-report=html --cov-fail-under=85 -v",
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Python: Lint (Ruff)",
+      "type": "shell",
+      "command": "cd python && ruff check .",
+      "group": "test",
+      "presentation": {
+        "reveal": "silent",
+        "panel": "shared"
+      },
+      "problemMatcher": {
+        "owner": "ruff",
+        "fileLocation": ["relative", "${workspaceFolder}/python"],
+        "pattern": {
+          "regexp": "^(.+):(\\d+):(\\d+):\\s+(\\w+)\\[(.+)\\]:\\s+(.+)$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "severity": 4,
+          "code": 5,
+          "message": 6
+        }
+      }
+    },
+    {
+      "label": "Python: Format (Ruff + Black + isort)",
+      "type": "shell",
+      "command": "cd python && ruff check --fix . && black . && isort .",
+      "group": "build",
+      "presentation": {
+        "reveal": "silent",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Python: Type Check (MyPy)",
+      "type": "shell",
+      "command": "cd python && mypy .",
+      "group": "test",
+      "presentation": {
+        "reveal": "silent",
+        "panel": "shared"
+      },
+      "problemMatcher": {
+        "owner": "mypy",
+        "fileLocation": ["relative", "${workspaceFolder}/python"],
+        "pattern": {
+          "regexp": "^(.+):(\\d+):\\s+(error|warning|note):\\s+(.+)$",
+          "file": 1,
+          "line": 2,
+          "severity": 3,
+          "message": 4
+        }
+      }
+    },
+    {
+      "label": "Python: Type Check (Pyright)",
+      "type": "shell",
+      "command": "cd python && pyright .",
+      "group": "test",
+      "presentation": {
+        "reveal": "silent",
+        "panel": "shared"
+      },
+      "problemMatcher": {
+        "owner": "pyright",
+        "fileLocation": ["relative", "${workspaceFolder}/python"],
+        "pattern": {
+          "regexp": "^\\s+(.+):(\\d+):(\\d+)\\s+-\\s+(error|warning|information):\\s+(.+)$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "severity": 4,
+          "message": 5
+        }
+      }
+    },
+
+    // ========================================================================
+    // DEVUI TASKS
+    // ========================================================================
+    {
+      "label": "DevUI: Start Server (Default Port 8080)",
+      "type": "shell",
+      "command": "cd python/packages/devui/samples && devui . --port 8080",
+      "isBackground": true,
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "focus": true
+      },
+      "problemMatcher": {
+        "pattern": {
+          "regexp": "^(.*)$",
+          "file": 1
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": ".*Starting.*",
+          "endsPattern": ".*Application startup complete.*"
+        }
+      }
+    },
+    {
+      "label": "DevUI: Start Server (Custom Directory)",
+      "type": "shell",
+      "command": "devui ${input:devuiDirectory} --port ${input:devuiPort}",
+      "isBackground": true,
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "focus": true
+      },
+      "problemMatcher": {
+        "pattern": {
+          "regexp": "^(.*)$",
+          "file": 1
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": ".*Starting.*",
+          "endsPattern": ".*Application startup complete.*"
+        }
+      }
+    },
+    {
+      "label": "DevUI: Start with Tracing (Framework)",
+      "type": "shell",
+      "command": "cd python/samples/getting_started/devui && devui . --port 8080 --tracing framework",
+      "isBackground": true,
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "focus": true
+      },
+      "problemMatcher": {
+        "pattern": {
+          "regexp": "^(.*)$",
+          "file": 1
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": ".*Starting.*",
+          "endsPattern": ".*Application startup complete.*"
+        }
+      }
+    },
+    {
+      "label": "DevUI: Start with Tracing (All)",
+      "type": "shell",
+      "command": "cd python/samples/getting_started/devui && devui . --port 8080 --tracing all",
+      "isBackground": true,
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "focus": true
+      },
+      "problemMatcher": {
+        "pattern": {
+          "regexp": "^(.*)$",
+          "file": 1
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": ".*Starting.*",
+          "endsPattern": ".*Application startup complete.*"
+        }
+      }
+    },
+    {
+      "label": "DevUI: Start Headless (API Only)",
+      "type": "shell",
+      "command": "devui ${input:devuiDirectory} --port ${input:devuiPort} --headless",
+      "isBackground": true,
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": {
+        "pattern": {
+          "regexp": "^(.*)$",
+          "file": 1
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": ".*Starting.*",
+          "endsPattern": ".*Application startup complete.*"
+        }
+      }
+    },
+    {
+      "label": "DevUI: Start with Auto-Reload",
+      "type": "shell",
+      "command": "cd python/samples/getting_started/devui && devui . --port 8080 --reload",
+      "isBackground": true,
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "focus": true
+      },
+      "problemMatcher": {
+        "pattern": {
+          "regexp": "^(.*)$",
+          "file": 1
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": ".*Starting.*",
+          "endsPattern": ".*Application startup complete.*"
+        }
+      }
+    },
+    {
+      "label": "DevUI: Test API Endpoints",
+      "type": "shell",
+      "command": "curl -X GET http://localhost:8080/health && echo '\n--- Entities ---' && curl -X GET http://localhost:8080/v1/entities",
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "DevUI: Open in Browser",
+      "type": "shell",
+      "command": "start http://localhost:8080",
+      "linux": {
+        "command": "xdg-open http://localhost:8080"
+      },
+      "osx": {
+        "command": "open http://localhost:8080"
+      },
+      "group": "none",
+      "presentation": {
+        "reveal": "never"
+      },
+      "problemMatcher": []
+    },
+
+    // ========================================================================
+    // .NET TASKS
+    // ========================================================================
+    {
+      "label": ".NET: Restore Dependencies",
+      "type": "shell",
+      "command": "dotnet restore dotnet/agent-framework-dotnet.slnx",
+      "group": "build",
+      "presentation": {
+        "reveal": "silent",
+        "panel": "shared"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": ".NET: Build Solution",
+      "type": "shell",
+      "command": "dotnet build dotnet/agent-framework-dotnet.slnx --configuration Debug",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "dependsOn": [".NET: Restore Dependencies"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": ".NET: Build Solution (Release)",
+      "type": "shell",
+      "command": "dotnet build dotnet/agent-framework-dotnet.slnx --configuration Release",
+      "group": "build",
+      "dependsOn": [".NET: Restore Dependencies"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": ".NET: Run Tests",
+      "type": "shell",
+      "command": "dotnet test dotnet/agent-framework-dotnet.slnx --no-build --verbosity normal",
+      "group": "test",
+      "dependsOn": [".NET: Build Solution"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": ".NET: Run Tests with Coverage",
+      "type": "shell",
+      "command": "dotnet test dotnet/agent-framework-dotnet.slnx --no-build --collect:\"XPlat Code Coverage\" --results-directory ./coverage",
+      "group": "test",
+      "dependsOn": [".NET: Build Solution"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": ".NET: Clean",
+      "type": "shell",
+      "command": "dotnet clean dotnet/agent-framework-dotnet.slnx",
+      "group": "build",
+      "presentation": {
+        "reveal": "silent",
+        "panel": "shared"
+      },
+      "problemMatcher": "$msCompile"
+    },
+
+    // ========================================================================
+    // SECURITY & COMPLIANCE TASKS
+    // ========================================================================
+    {
+      "label": "Security: Run Bandit",
+      "type": "shell",
+      "command": "bandit -r . -f json -o .aurelius/evidence/security/bandit-latest.json && bandit -r .",
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Security: Run Semgrep",
+      "type": "shell",
+      "command": "semgrep --config=auto . --json --output=.aurelius/evidence/security/semgrep-latest.json && semgrep --config=auto .",
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Security: Run Safety",
+      "type": "shell",
+      "command": "safety check --json --output .aurelius/evidence/security/safety-latest.json",
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Security: Run All Scans",
+      "type": "shell",
+      "command": "bandit -r . && semgrep --config=auto . && safety check && pip-audit",
+      "group": "test",
+      "dependsOn": [
+        "Security: Run Bandit",
+        "Security: Run Semgrep",
+        "Security: Run Safety"
+      ],
+      "dependsOrder": "sequence",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Compliance: Generate SBOM",
+      "type": "shell",
+      "command": "cyclonedx-py -o .aurelius/evidence/sbom/sbom-$(date +%Y%m%d-%H%M%S).json",
+      "windows": {
+        "command": "cyclonedx-py -o .aurelius/evidence/sbom/sbom-%date:~-4,4%%date:~-10,2%%date:~-7,2%-%time:~0,2%%time:~3,2%%time:~6,2%.json"
+      },
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Compliance: Generate License Report",
+      "type": "shell",
+      "command": "pip-licenses --format=json --output-file=.aurelius/evidence/compliance/licenses-$(date +%Y%m%d).json",
+      "windows": {
+        "command": "pip-licenses --format=json --output-file=.aurelius/evidence/compliance/licenses-%date:~-4,4%%date:~-10,2%%date:~-7,2%.json"
+      },
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Compliance: Generate All Evidence",
+      "type": "shell",
+      "dependsOn": [
+        "Compliance: Generate SBOM",
+        "Compliance: Generate License Report",
+        "Security: Run All Scans"
+      ],
+      "dependsOrder": "parallel",
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": []
+    },
+
+    // ========================================================================
+    // GIT & PRE-COMMIT TASKS
+    // ========================================================================
+    {
+      "label": "Pre-commit: Install Hooks",
+      "type": "shell",
+      "command": "pre-commit install && pre-commit install --hook-type commit-msg",
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Pre-commit: Run All Hooks",
+      "type": "shell",
+      "command": "pre-commit run --all-files",
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": []
+    },
+
+    // ========================================================================
+    // AZURE TASKS
+    // ========================================================================
+    {
+      "label": "Azure: Login",
+      "type": "shell",
+      "command": "az login --tenant 944b3898-fcbe-4631-91e1-794e102c9c7d",
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Azure: Show Account",
+      "type": "shell",
+      "command": "az account show",
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+
+    // ========================================================================
+    // QUALITY CHECK TASKS (Run Everything)
+    // ========================================================================
+    {
+      "label": "Quality: Run All Checks",
+      "dependsOn": [
+        "Python: Lint (Ruff)",
+        "Python: Type Check (MyPy)",
+        "Python: Type Check (Pyright)",
+        "Python: Run Tests (Coverage ≥85%)",
+        "Security: Run All Scans"
+      ],
+      "dependsOrder": "sequence",
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": []
+    }
+  ],
+
+  // ==========================================================================
+  // INPUT VARIABLES
+  // ==========================================================================
+  "inputs": [
+    {
+      "id": "devuiDirectory",
+      "type": "promptString",
+      "description": "Enter directory path for DevUI (e.g., python/samples/getting_started/devui)",
+      "default": "python/samples/getting_started/devui"
+    },
+    {
+      "id": "devuiPort",
+      "type": "promptString",
+      "description": "Enter port for DevUI server",
+      "default": "8080"
+    }
+  ]
+}

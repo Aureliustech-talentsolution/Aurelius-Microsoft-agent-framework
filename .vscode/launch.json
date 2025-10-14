@@ -1,0 +1,270 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    // ========================================================================
+    // PYTHON DEBUG CONFIGURATIONS
+    // ========================================================================
+    {
+      "name": "Python: Current File",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/python",
+        "DEPLOYMENT_ENVIRONMENT": "development"
+      },
+      "cwd": "${fileDirname}"
+    },
+    {
+      "name": "Python: Agent Sample",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/python/samples/getting_started/${input:pythonSampleFolder}/${input:pythonSampleFile}",
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/python",
+        "DEPLOYMENT_ENVIRONMENT": "development"
+      }
+    },
+    {
+      "name": "Python: Pytest Current File",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "args": [
+        "${file}",
+        "-v",
+        "-s",
+        "--log-cli-level=DEBUG"
+      ],
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/python",
+        "DEPLOYMENT_ENVIRONMENT": "test"
+      }
+    },
+    {
+      "name": "Python: Pytest All Tests",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "args": [
+        "tests/",
+        "-v",
+        "--cov",
+        "--cov-report=html"
+      ],
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/python",
+        "DEPLOYMENT_ENVIRONMENT": "test"
+      },
+      "cwd": "${workspaceFolder}/python"
+    },
+    {
+      "name": "Python: Pytest With Coverage",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "args": [
+        "${workspaceFolder}/tests",
+        "-v",
+        "--cov=aurelius_agents",
+        "--cov-report=html",
+        "--cov-report=term-missing"
+      ],
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}",
+        "DEPLOYMENT_ENVIRONMENT": "test"
+      }
+    },
+    {
+      "name": "Python: Remote Attach",
+      "type": "debugpy",
+      "request": "attach",
+      "connect": {
+        "host": "localhost",
+        "port": 5678
+      },
+      "pathMappings": [
+        {
+          "localRoot": "${workspaceFolder}/python",
+          "remoteRoot": "/app"
+        }
+      ]
+    },
+
+    // ========================================================================
+    // DEVUI DEBUG CONFIGURATIONS
+    // ========================================================================
+    {
+      "name": "DevUI: Debug Server",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "agent_framework_devui",
+      "args": [
+        "python/samples/getting_started/devui",
+        "--port",
+        "8080"
+      ],
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/python",
+        "DEPLOYMENT_ENVIRONMENT": "development"
+      },
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "DevUI: Debug with Tracing",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "agent_framework_devui",
+      "args": [
+        "python/samples/getting_started/devui",
+        "--port",
+        "8080",
+        "--tracing",
+        "framework"
+      ],
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/python",
+        "DEPLOYMENT_ENVIRONMENT": "development"
+      },
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "DevUI: Debug Custom Directory",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "agent_framework_devui",
+      "args": [
+        "${input:devuiDirectory}",
+        "--port",
+        "${input:devuiPort}"
+      ],
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/python",
+        "DEPLOYMENT_ENVIRONMENT": "development"
+      },
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "DevUI: Debug In-Memory Mode",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/python/samples/getting_started/devui/in_memory_mode.py",
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/python",
+        "DEPLOYMENT_ENVIRONMENT": "development"
+      },
+      "cwd": "${workspaceFolder}/python/samples/getting_started/devui"
+    },
+
+    // ========================================================================
+    // .NET DEBUG CONFIGURATIONS
+    // ========================================================================
+    {
+      "name": ".NET: Launch Current Project",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": ".NET: Build Solution",
+      "program": "${workspaceFolder}/dotnet/artifacts/bin/${input:dotnetProject}/Debug/net8.0/${input:dotnetProject}.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/dotnet",
+      "console": "internalConsole",
+      "stopAtEntry": false,
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    },
+    {
+      "name": ".NET: Attach to Process",
+      "type": "coreclr",
+      "request": "attach",
+      "processId": "${command:pickProcess}"
+    },
+    {
+      "name": ".NET: Agent Sample - Azure OpenAI",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": ".NET: Build Solution",
+      "program": "${workspaceFolder}/dotnet/samples/GettingStarted/AgentProviders/Agent_With_AzureOpenAIResponses/bin/Debug/net8.0/Agent_With_AzureOpenAIResponses.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/dotnet/samples/GettingStarted/AgentProviders/Agent_With_AzureOpenAIResponses",
+      "console": "internalConsole",
+      "stopAtEntry": false,
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+
+    // ========================================================================
+    // COMPOUND CONFIGURATIONS (Run Multiple Debuggers)
+    // ========================================================================
+    {
+      "name": "Full Stack: Python + .NET",
+      "type": "compound",
+      "configurations": [
+        "Python: Current File",
+        ".NET: Launch Current Project"
+      ]
+    }
+  ],
+
+  "inputs": [
+    {
+      "id": "pythonSampleFolder",
+      "type": "pickString",
+      "description": "Select Python sample folder",
+      "options": [
+        "agents",
+        "chat_client",
+        "context_providers",
+        "devui",
+        "mcp",
+        "middleware",
+        "observability",
+        "orchestration",
+        "tools",
+        "workflows"
+      ]
+    },
+    {
+      "id": "pythonSampleFile",
+      "type": "promptString",
+      "description": "Enter Python sample filename (e.g., simple_agent.py)"
+    },
+    {
+      "id": "dotnetProject",
+      "type": "promptString",
+      "description": "Enter .NET project name (e.g., Agent_With_AzureOpenAIResponses)"
+    },
+    {
+      "id": "devuiDirectory",
+      "type": "promptString",
+      "description": "Enter directory path for DevUI (e.g., python/samples/getting_started/devui)",
+      "default": "python/samples/getting_started/devui"
+    },
+    {
+      "id": "devuiPort",
+      "type": "promptString",
+      "description": "Enter port for DevUI server",
+      "default": "8080"
+    }
+  ]
+}
