@@ -58,9 +58,19 @@ dotnet add package Microsoft.Agents.AI
   - Observability and production operations
   - Quick reference cheatsheets
 
-### 🤖 AI Agent Best Practices
+### 🤖 AI Assistant Instructions
 
-- **[AI Agent Best Practices Guide](./AGENT.md)** - Bleeding-edge research and best practices for AI agent development (2025-2026)
+- **[AGENT.md](./AGENT.md)** - Workspace-specific instructions for AI coding assistants (Claude, Copilot, Cursor, etc.)
+  - Project structure and architecture overview
+  - Python and .NET development setup and commands
+  - Coding conventions and style guides
+  - Testing patterns and coverage requirements
+  - Security and compliance requirements
+  - Common tasks and workflows
+
+### 📖 AI Agent Best Practices
+
+- **[AI Agent Best Practices Guide](./docs/AI_AGENT_BEST_PRACTICES.md)** - Bleeding-edge research and best practices for AI agent development (2025-2026)
   - Agent architecture patterns (ReAct, CoT, Plan-and-Execute)
   - Bleeding edge approaches (Computer Use, Multi-Modal, Self-Improving Agents)
   - Multi-agent orchestration patterns
