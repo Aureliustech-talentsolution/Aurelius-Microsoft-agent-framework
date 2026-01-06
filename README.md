@@ -60,7 +60,14 @@ dotnet add package Microsoft.Agents.AI
 
 ### 🤖 AI Assistant Instructions
 
-- **[AGENT.md](./AGENT.md)** - Workspace-specific instructions for AI coding assistants (Claude, Copilot, Cursor, etc.)
+- **[CLAUDE.md](./CLAUDE.md)** - Claude Code specific instructions (optimized for Claude CLI)
+  - Extended thinking and context management strategies
+  - Decision framework for complex changes
+  - Token-efficient patterns for this codebase
+  - Claude-specific features: checkpointing, skills awareness
+  - Bleeding-edge prompt engineering patterns
+
+- **[AGENT.md](./AGENT.md)** - General AI assistant instructions (Claude, Copilot, Cursor, etc.)
   - Project structure and architecture overview
   - Python and .NET development setup and commands
   - Coding conventions and style guides
