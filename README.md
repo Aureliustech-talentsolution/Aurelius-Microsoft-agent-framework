@@ -58,6 +58,17 @@ dotnet add package Microsoft.Agents.AI
   - Observability and production operations
   - Quick reference cheatsheets
 
+### 🤖 AI Agent Best Practices
+
+- **[AI Agent Best Practices Guide](./AGENT.md)** - Bleeding-edge research and best practices for AI agent development (2025-2026)
+  - Agent architecture patterns (ReAct, CoT, Plan-and-Execute)
+  - Bleeding edge approaches (Computer Use, Multi-Modal, Self-Improving Agents)
+  - Multi-agent orchestration patterns
+  - Safety, guardrails, and OWASP Top 10 for Agentic Applications
+  - Advanced memory architectures (TKGs, episodic-to-semantic consolidation)
+  - Tool integration and MCP best practices
+  - Production operations and observability
+
 ### ✨ **Highlights**
 
 - **Graph-based Workflows**: Connect agents and deterministic functions using data flows with streaming, checkpointing, human-in-the-loop, and time-travel capabilities
