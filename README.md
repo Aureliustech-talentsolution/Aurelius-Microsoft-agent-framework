@@ -48,6 +48,16 @@ dotnet add package Microsoft.Agents.AI
 - **[Migration from Semantic Kernel](https://learn.microsoft.com/en-us/agent-framework/migration-guide/from-semantic-kernel)** - Guide to migrate from Semantic Kernel
 - **[Migration from AutoGen](https://learn.microsoft.com/en-us/agent-framework/migration-guide/from-autogen)** - Guide to migrate from AutoGen
 
+### 🎓 SME Skills Guide
+
+- **[Microsoft Agent Framework Skills](./MICROSOFT_AGENT_FRAMEWORK_SKILLS.md)** - Comprehensive SME-level skills guide for building production AI agents
+  - Python and .NET SDK mastery
+  - Workflow orchestration patterns
+  - Tool and function integration
+  - Memory and context management
+  - Observability and production operations
+  - Quick reference cheatsheets
+
 ### ✨ **Highlights**
 
 - **Graph-based Workflows**: Connect agents and deterministic functions using data flows with streaming, checkpointing, human-in-the-loop, and time-travel capabilities
