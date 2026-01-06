@@ -48,6 +48,44 @@ dotnet add package Microsoft.Agents.AI
 - **[Migration from Semantic Kernel](https://learn.microsoft.com/en-us/agent-framework/migration-guide/from-semantic-kernel)** - Guide to migrate from Semantic Kernel
 - **[Migration from AutoGen](https://learn.microsoft.com/en-us/agent-framework/migration-guide/from-autogen)** - Guide to migrate from AutoGen
 
+### 🎓 SME Skills Guide
+
+- **[Microsoft Agent Framework Skills](./MICROSOFT_AGENT_FRAMEWORK_SKILLS.md)** - Comprehensive SME-level skills guide for building production AI agents
+  - Python and .NET SDK mastery
+  - Workflow orchestration patterns
+  - Tool and function integration
+  - Memory and context management
+  - Observability and production operations
+  - Quick reference cheatsheets
+
+### 🤖 AI Assistant Instructions
+
+- **[CLAUDE.md](./CLAUDE.md)** - Claude Code specific instructions (optimized for Claude CLI)
+  - Extended thinking and context management strategies
+  - Decision framework for complex changes
+  - Token-efficient patterns for this codebase
+  - Claude-specific features: checkpointing, skills awareness
+  - Bleeding-edge prompt engineering patterns
+
+- **[AGENT.md](./AGENT.md)** - General AI assistant instructions (Claude, Copilot, Cursor, etc.)
+  - Project structure and architecture overview
+  - Python and .NET development setup and commands
+  - Coding conventions and style guides
+  - Testing patterns and coverage requirements
+  - Security and compliance requirements
+  - Common tasks and workflows
+
+### 📖 AI Agent Best Practices
+
+- **[AI Agent Best Practices Guide](./docs/AI_AGENT_BEST_PRACTICES.md)** - Bleeding-edge research and best practices for AI agent development (2025-2026)
+  - Agent architecture patterns (ReAct, CoT, Plan-and-Execute)
+  - Bleeding edge approaches (Computer Use, Multi-Modal, Self-Improving Agents)
+  - Multi-agent orchestration patterns
+  - Safety, guardrails, and OWASP Top 10 for Agentic Applications
+  - Advanced memory architectures (TKGs, episodic-to-semantic consolidation)
+  - Tool integration and MCP best practices
+  - Production operations and observability
+
 ### ✨ **Highlights**
 
 - **Graph-based Workflows**: Connect agents and deterministic functions using data flows with streaming, checkpointing, human-in-the-loop, and time-travel capabilities

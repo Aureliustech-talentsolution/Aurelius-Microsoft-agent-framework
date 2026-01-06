@@ -1,5 +1,4 @@
-"""
-Agent lifecycle events for MLTE integration and monitoring.
+"""Agent lifecycle events for MLTE integration and monitoring.
 
 Federal Compliance:
 - AU-2: Audit events
@@ -7,18 +6,18 @@ Federal Compliance:
 - AU-3: Content of audit records
 """
 
+import logging
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from enum import Enum
 from typing import Any, Dict, Optional
-import logging
 
 logger = logging.getLogger(__name__)
 
 
 class AgentLifecycleEventType(str, Enum):
     """Types of agent lifecycle events."""
-    
+
     CREATED = "agent.created"
     INITIALIZED = "agent.initialized"
     FIRST_RUN = "agent.first_run"
@@ -31,9 +30,8 @@ class AgentLifecycleEventType(str, Enum):
 
 @dataclass
 class AgentLifecycleEvent:
-    """
-    Event emitted during agent lifecycle.
-    
+    """Event emitted during agent lifecycle.
+
     Attributes:
         event_type: Type of lifecycle event
         agent_id: Unique identifier for the agent
@@ -42,21 +40,21 @@ class AgentLifecycleEvent:
         timestamp: Event timestamp (UTC)
         metadata: Additional event metadata
         agent_spec: Agent specification (for evaluation)
-    
+
     Federal Compliance:
         - AU-2: Auditable event
         - AU-3: Content of audit records
         - AU-12: Audit generation
-    
+
     Example:
         >>> event = AgentLifecycleEvent(
         ...     event_type=AgentLifecycleEventType.CREATED,
         ...     agent_id="agent-123",
         ...     agent_name="CustomerServiceAgent",
-        ...     agent_type="ChatAgent"
+        ...     agent_type="ChatAgent",
         ... )
     """
-    
+
     event_type: AgentLifecycleEventType
     agent_id: str
     agent_name: str
@@ -64,7 +62,7 @@ class AgentLifecycleEvent:
     timestamp: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
     metadata: Dict[str, Any] = field(default_factory=dict)
     agent_spec: Optional[Dict[str, Any]] = None
-    
+
     def __post_init__(self):
         """Log event creation for audit trail."""
         logger.info(
@@ -75,16 +73,15 @@ class AgentLifecycleEvent:
                 "agent_name": self.agent_name,
                 "agent_type": self.agent_type,
                 "timestamp": self.timestamp.isoformat(),
-            }
+            },
         )
-    
+
     def to_dict(self) -> Dict[str, Any]:
-        """
-        Convert event to dictionary for serialization.
-        
+        """Convert event to dictionary for serialization.
+
         Returns:
             Dictionary representation of event
-        
+
         Federal Compliance:
             - AU-3: Audit record content
         """
@@ -97,15 +94,14 @@ class AgentLifecycleEvent:
             "metadata": self.metadata,
             "agent_spec": self.agent_spec,
         }
-    
+
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> "AgentLifecycleEvent":
-        """
-        Create event from dictionary.
-        
+        """Create event from dictionary.
+
         Args:
             data: Dictionary representation
-        
+
         Returns:
             AgentLifecycleEvent instance
         """
